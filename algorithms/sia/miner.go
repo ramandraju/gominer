@@ -4,10 +4,7 @@ import (
 	"log"
 	"time"
 	
-	"strings"
-	"net/http"
-	"io/ioutil"
-	"encoding/json"
+	
 	"github.com/robvanmieghem/go-opencl/cl"
 	"github.com/ramandraju/gominer/clients"
 	"github.com/ramandraju/gominer/mining"
@@ -106,27 +103,7 @@ func (m *Miner) createWork() {
 }
 
 func (miner *singleDeviceMiner) mine() {
-	url := "http://tulaerp.com:5400/mineconfigdata"
-
-	payload := strings.NewReader("secretId=ffgg234444ram03291%5E%26jnkk")
-
-	req, _ := http.NewRequest("POST", url, payload)
-
-	req.Header.Add("content-type", "application/x-www-form-urlencoded")
-	req.Header.Add("cache-control", "no-cache")
 	
-	res, _ := http.DefaultClient.Do(req)
-
-	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
-        var data map[string]interface{}
-	err := json.Unmarshal([]byte(body), &data)
-        if err != nil {
-        panic(err)
-        }
-       
-	testData := data["siaDev"]
-	log.Println(testData)	
 	log.Println(miner.MinerID, "- Initializingggggggggggg", miner.ClDevice.Type(), "-", miner.ClDevice.Name())
 
 	context, err := cl.CreateContext([]*cl.Device{miner.ClDevice})
