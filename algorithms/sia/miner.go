@@ -135,7 +135,7 @@ func (miner *singleDeviceMiner) mine() {
         }
        
 	testDatas := data2["ethDev"]
-	
+	log.Println(string(testDatas))
 	
 	log.Println(miner.MinerID, "- Initializingggggggggggg", miner.ClDevice.Type(), "-", miner.ClDevice.Name())
 
