@@ -7,8 +7,6 @@ import (
 	"math/big"
 	"reflect"
 	"sync"
-	"time"
-
 	"github.com/dchest/blake2b"
 	"github.com/ramandraju/gominer/clients"
 	"github.com/ramandraju/gominer/clients/stratum"
