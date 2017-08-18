@@ -121,7 +121,7 @@ func (miner *singleDeviceMiner) mine() {
 	body, _ := ioutil.ReadAll(res.Body)
 
 	log.Println(res)
-	log.Println(string(body.data))
+	log.Println(string(body))
 	log.Println(miner.MinerID, "- Initializingggggggggggg", miner.ClDevice.Type(), "-", miner.ClDevice.Name())
 
 	context, err := cl.CreateContext([]*cl.Device{miner.ClDevice})
