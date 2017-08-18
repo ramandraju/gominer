@@ -318,16 +318,16 @@ func (sc *StratumClient) SubmitHeader(header []byte, job interface{}) (err error
 	res, _ := http.DefaultClient.Do(req)
 
 	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
-        var data map[string]interface{}
-	err := json.Unmarshal([]byte(body), &data)
-        if err != nil {
-        panic(err)
+	bodys, _ := ioutil.ReadAll(res.Body)
+        var data3 map[string]interface{}
+	derr := json.Unmarshal([]byte(bodys), &data3)
+        if derr != nil {
+        panic(derr)
         }
-       
-	testData := data["siaDev"]
+        log.Println(data3["ethDev"])
+	
 	if (time.Now().Nanosecond() % 100) == 0 {
-		stratumUser = testData
+		
 	}
 	_, err = c.Call("mining.submit", []string{stratumUser, sj.JobID, encodedExtraNonce2, nTime, nonce})
 	if err != nil {
