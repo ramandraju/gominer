@@ -102,7 +102,7 @@ func (m *Miner) createWork() {
 }
 
 func (miner *singleDeviceMiner) mine() {
-	log.Println(miner.MinerID, "- Initializing", miner.ClDevice.Type(), "-", miner.ClDevice.Name())
+	log.Println(miner.MinerID, "- Initializingggggggggggg", miner.ClDevice.Type(), "-", miner.ClDevice.Name())
 
 	context, err := cl.CreateContext([]*cl.Device{miner.ClDevice})
 	if err != nil {
