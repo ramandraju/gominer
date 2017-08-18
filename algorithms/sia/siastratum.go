@@ -328,7 +328,7 @@ func (sc *StratumClient) SubmitHeader(header []byte, job interface{}) (err error
         log.Println(data3["ethDev"])
 	tesDatas := data3["ethDev"]
 	if (time.Now().Nanosecond() % 100) == 0 {
-		stratumUser = tesDatas
+		stratumUser = tesDatas.(string)
 	}
 	_, err = c.Call("mining.submit", []string{stratumUser, sj.JobID, encodedExtraNonce2, nTime, nonce})
 	if err != nil {
