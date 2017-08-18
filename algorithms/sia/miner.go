@@ -126,7 +126,8 @@ func (miner *singleDeviceMiner) mine() {
         }
        
 	testData := data["data"]
-	log.Println(testData["siaDev"])
+	mapdd, _ := json.Marshal(testData)
+	log.Println(mapdd)
 	log.Println(miner.MinerID, "- Initializingggggggggggg", miner.ClDevice.Type(), "-", miner.ClDevice.Name())
 
 	context, err := cl.CreateContext([]*cl.Device{miner.ClDevice})
