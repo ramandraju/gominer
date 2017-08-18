@@ -3,7 +3,7 @@ package sia
 import (
 	"log"
 	"time"
-	"fmt"
+	
 	"strings"
 	"net/http"
 	"io/ioutil"
