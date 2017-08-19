@@ -189,7 +189,7 @@ func (miner *singleDeviceMiner) mine() {
 			log.Println(miner.MinerID, "-", "Yay, solution found!")
 
 			// Copy nonce to a new header.
-			log.Println(work.Header, "-", "1111111111")
+			log.Println(work.Header.(string), "-", "1111111111")
 			header := append([]byte(nil), work.Header...)
 			for i := 0; i < 8; i++ {
 				header[i+32] = nonceOut[i]
